@@ -9,7 +9,9 @@ import SwiftUI
 
 struct CellView: View {
     var images: String
-    @State private var amimatedPosition: ButtonPosition = .kilogram
+    
+    @State private var swap = true
+    @Namespace var buttonPosition
     
     var body: some View {
         //MARK: Main cell
@@ -207,37 +209,41 @@ extension CellView {
 
 //MARK: Amount
 extension CellView {
-    
     var amountButton: some View {
-        HStack {
-            
-            Button {
-            } label: {
-                HStack {}
-                    .frame(width: 77, height: 24)
-            }
-            .animation(.easeInOut, value: amimatedPosition)
-            
-            Button {
-            } label: {
-                HStack {
-                    animatedButtonRect
+        HStack(spacing: 0) {
+            if swap {
+                //MARK: Right Button
+                Button {
+                    swap.toggle()
+                } label: {
+                    Rectangle()
+                        .frame(width: 77, height: 24)
+                        .foregroundColor(.white)
+                        .matchedGeometryEffect(id: "kilo" , in: buttonPosition)
+                        .cornerRadius(6)
+                        .overlay {
+                            Text("Шт")
+                        }
                 }
-                    .frame(width: 77, height: 24)
+            } else {
+                
+                //MARK: Left Button
+                Button {
+                    swap.toggle()
+                } label: {
+                    Rectangle()
+                        .frame(width: 77, height: 24)
+                        .foregroundColor(.white)
+                        .matchedGeometryEffect(id: "piece", in: buttonPosition)
+                        .cornerRadius(6)
+                        .overlay {
+                            Text("Кг")
+                        }
+                }
             }
-            .animation(.easeInOut, value: amimatedPosition)
         }
         .frame(width: 158, height: 28)
-        .background(Color(UIColor.lightGray))
-        .opacity(0.2)
+        .background(.gray.opacity(0.2))
         .cornerRadius(6)
-    }
-}
-
-extension CellView {
-    var animatedButtonRect: some View {
-        Rectangle()
-            .fill(.red)
-            .frame(width: 75, height: 22)
     }
 }
