@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CellView: View {
     var images: String
+    @State private var amimatedPosition: ButtonPosition = .kilogram
     
     var body: some View {
         //MARK: Main cell
@@ -31,7 +32,7 @@ struct CellView: View {
 
 struct Cell_Previews: PreviewProvider {
     static var previews: some View {
-        CellView(images: "Image")
+        CellView(images: "")
     }
 }
 
@@ -39,7 +40,7 @@ struct Cell_Previews: PreviewProvider {
 extension CellView {
     var imageLayer: some View {
         ZStack {
-            CellImage()
+            image
                 .frame(width: 155, height: 155)
             HStack {
                 Image("Vector1")
@@ -69,16 +70,16 @@ extension CellView {
 extension CellView {
     var priceLayer: some View {
         VStack {
-            
             //MARK: Actual Price
             GeometryReader { geo in
                 HStack(spacing: 0) {
                     //MARK: Big price
                     Text("99999")
                         .fontWeight(.bold)
+                        .font(.system(size: 20))
                     //MARK: Cent price
                     Text("99")
-                        .font(.system(size: 14))
+                        .font(.system(size: 16))
                         .fontWeight(.bold)
                     //MARK: Icon per amount
                     Image("PerAmountIcon")
@@ -111,8 +112,11 @@ extension CellView {
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)
             }
-            HStack {}
-                .frame(width: 110, height: 18)
+            //MARK: Amount
+            HStack {
+                amountButton
+            }
+            .frame(width: 110, height: 18)
             //MARK: Price and Button layer
             HStack {
                 priceLayer
@@ -120,9 +124,9 @@ extension CellView {
                 buttonLayer
                     .frame(width: 71, height: 36, alignment: .trailing)
             }
-            .frame(width: 168, height: 44)
+            .frame(width: 168, height: 44, alignment: .bottom)
         }
-        .frame(width: 168, height: 110, alignment: .top)
+        .frame(width: 168, height: 110)
     }
 }
 
@@ -153,21 +157,31 @@ extension CellView {
 //MARK: Action layer
 extension CellView {
     var actionLayer: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                Image("actionlist")
-                    .resizable()
-                    .frame(width: 16, height: 16)
+        Button {
+            
+        } label: {
+            VStack {
+                VStack(spacing: 0) {
+                    ZStack() {
+                        Image("actionlist")
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                    }
+                    .frame(width: 32, height: 32)
+                    ZStack {
+                        Image("actionheart")
+                            .resizable()
+                            .frame(width: 13, height: 12)
+                    }
+                    .frame(width: 32, height: 32)
+                    
+                }
+                .frame(width: 32, height: 64)
+                .background(Color.white)
+                .cornerRadius(20)
             }
-                .frame(width: 32, height: 32)
-            ZStack {
-                Image("actionheart")
-                    .resizable()
-                    .frame(width: 13, height: 12)
-            }
-                .frame(width: 32, height: 32)
+            .frame(width: 32, height: 64)
         }
-        .frame(width: 32, height: 64)
     }
 }
 
@@ -180,3 +194,50 @@ extension CellView {
 //        .frame(width: 32, height: 64)
 //    }
 //}
+
+extension CellView {
+    var image: some View {
+        Image(images)
+            .resizable()
+            .scaledToFit()
+            .aspectRatio(contentMode: .fit)
+    }
+}
+
+
+//MARK: Amount
+extension CellView {
+    
+    var amountButton: some View {
+        HStack {
+            
+            Button {
+            } label: {
+                HStack {}
+                    .frame(width: 77, height: 24)
+            }
+            .animation(.easeInOut, value: amimatedPosition)
+            
+            Button {
+            } label: {
+                HStack {
+                    animatedButtonRect
+                }
+                    .frame(width: 77, height: 24)
+            }
+            .animation(.easeInOut, value: amimatedPosition)
+        }
+        .frame(width: 158, height: 28)
+        .background(Color(UIColor.lightGray))
+        .opacity(0.2)
+        .cornerRadius(6)
+    }
+}
+
+extension CellView {
+    var animatedButtonRect: some View {
+        Rectangle()
+            .fill(.red)
+            .frame(width: 75, height: 22)
+    }
+}

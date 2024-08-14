@@ -17,7 +17,6 @@
 		78925DA72C650E92008AA756 /* SPARAPPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925DA62C650E92008AA756 /* SPARAPPUITestsLaunchTests.swift */; };
 		78925DB52C650F18008AA756 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925DB42C650F18008AA756 /* CellView.swift */; };
 		78925DB72C651F3E008AA756 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925DB62C651F3E008AA756 /* Data.swift */; };
-		78F3DEE12C6A5847004AB285 /* CellImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F3DEE02C6A5847004AB285 /* CellImage.swift */; };
 		78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F3DEE22C6A5BFF004AB285 /* CellRating.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +51,6 @@
 		78925DA62C650E92008AA756 /* SPARAPPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPARAPPUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		78925DB42C650F18008AA756 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		78925DB62C651F3E008AA756 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		78F3DEE02C6A5847004AB285 /* CellImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImage.swift; sourceTree = "<group>"; };
 		78F3DEE22C6A5BFF004AB285 /* CellRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRating.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				78925DB42C650F18008AA756 /* CellView.swift */,
-				78F3DEE02C6A5847004AB285 /* CellImage.swift */,
 				78F3DEE22C6A5BFF004AB285 /* CellRating.swift */,
 			);
 			path = Cell;
@@ -299,7 +296,6 @@
 				7815F33C2C69CB0700D21D77 /* ButtonSwitchView.swift in Sources */,
 				78925D8C2C650E90008AA756 /* ContentView.swift in Sources */,
 				78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */,
-				78F3DEE12C6A5847004AB285 /* CellImage.swift in Sources */,
 				78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */,
 				78925DB52C650F18008AA756 /* CellView.swift in Sources */,
 				78925DB72C651F3E008AA756 /* Data.swift in Sources */,

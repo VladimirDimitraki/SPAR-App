@@ -32,3 +32,8 @@ struct DataItemsInFirstView {
         GridItem(.fixed(170), spacing: 5)
     ]
 }
+
+enum ButtonPosition {
+    case kilogram
+    case piece
+}
