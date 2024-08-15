@@ -34,6 +34,6 @@ struct DataItemsInFirstView {
 }
 
 enum ButtonPosition {
-    case kilogram
-    case piece
+    case kilogram(Bool)
+    case piece(Bool)
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 struct CellView: View {
     var images: String
-    
+    @State private var kilograms: Float = 0
+    @State private var piece: Int = 0
     @State private var swap = true
+    @State private var basketButton = false
     @Namespace var buttonPosition
+    
     
     var body: some View {
         //MARK: Main cell
@@ -74,22 +77,23 @@ extension CellView {
         VStack {
             //MARK: Actual Price
             GeometryReader { geo in
-                HStack(spacing: 0) {
-                    //MARK: Big price
-                    Text("99999")
-                        .fontWeight(.bold)
-                        .font(.system(size: 20))
-                    //MARK: Cent price
-                    Text("99")
-                        .font(.system(size: 16))
-                        .fontWeight(.bold)
+                HStack(alignment: .center, spacing: 0) {
+                    Group {
+                        //MARK: Big price
+                        Text("9")
+                            .font(.system(size: 20))
+                        //MARK: Cent price
+                        Text("99")
+                            .font(.system(size: 16))
+                    }
+                    .fontWeight(.bold)
+                    .kerning(-1)
+                    .padding(.trailing, 2)
                     //MARK: Icon per amount
                     Image("PerAmountIcon")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
                 }
-                .frame(width: geo.size.width * 1.5, height: geo.size.height, alignment: .leading)
+                
+//                .frame(width: geo.size.width * 1.5, height: geo.size.height, alignment: .leading)
             }
             
             //MARK: Old Price
@@ -99,7 +103,7 @@ extension CellView {
                     .foregroundColor(.gray)
                     .font(.system(size: 12))
             }
-            .frame(width: 67, height: 14, alignment: .leading)
+            .frame(width: 67, alignment: .leading)
         }
         .frame(width: 71, height: 36, alignment: .topTrailing)
     }
@@ -116,17 +120,25 @@ extension CellView {
             }
             //MARK: Amount
             HStack {
-                amountButton
+                if basketButton {
+                    amountButton
+                }
             }
             .frame(width: 110, height: 18)
             //MARK: Price and Button layer
             HStack {
-                priceLayer
-                    .frame(width: 71, height: 36, alignment: .leading)
-                buttonLayer
-                    .frame(width: 71, height: 36, alignment: .trailing)
+                if basketButton {
+                    animatedBasketButton
+                } else {
+                    priceLayer
+                        .padding(9)
+                    Spacer()
+                    buttonLayer
+                        .padding(4)
+                }
+                
             }
-            .frame(width: 168, height: 44, alignment: .bottom)
+            .frame(width: 168, height: 44)
         }
         .frame(width: 168, height: 110)
     }
@@ -135,24 +147,105 @@ extension CellView {
 //MARK: Button layer
 extension CellView {
     var buttonLayer: some View {
-        Button {
-        } label: {
-            ZStack {
-                Rectangle()
-                    .frame(width: 48, height: 36)
-                    .cornerRadius(40)
+        HStack {
+            Button {
+                basketButton.toggle()
+            } label: {
                 ZStack {
-                    Image("Bag")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(1)
+                    Rectangle()
+                        .frame(width: 48, height: 36)
+                        .cornerRadius(40)
+                    ZStack {
+                        Image("Bag")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(1)
+                    }
+                    .frame(width: 16, height: 16)
                 }
-                .frame(width: 16, height: 16)
-                .padding()
+                .frame(width: 48, height: 36)
             }
-            .frame(width: 48, height: 36)
+            .foregroundColor(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
         }
-        .foregroundColor(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
+    }
+}
+
+//MARK: Animated Button
+extension CellView {
+    var animatedBasketButton: some View {
+        Button {
+            basketButton.toggle()
+        } label: {
+            HStack {
+                
+                Rectangle()
+                    .fill(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
+                    .cornerRadius(40)
+                    .overlay {
+                        HStack {
+                            Button {
+                                if swap {
+                                    if kilograms < 0.1 {
+                                        basketButton.toggle()
+                                    }
+                                    kilograms -= (kilograms >= 0.1) ? 0.1 : 0
+                                }
+                                else {
+                                    if piece < 1 {
+                                        basketButton.toggle()
+                                    }
+                                    piece -= (piece > 0) ? 1 : 0
+                                }
+                            } label: {
+                                ZStack {
+                                    Image(systemName: "minus")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(width: 14)
+                                }
+                                .frame(width: 36, height: 36)
+                            }
+                            
+                            Spacer()
+                            
+                            VStack {
+                                let amount: String = swap ? "\(kilograms) кг" : "\(piece) шт"
+                                Text("\(amount)")
+                                    .font(.system(size: 14))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                Text("~9,99 ₽")
+                                    .font(.system(size: 11))
+                                    .foregroundColor(.white.opacity(0.8))
+                                
+                            }
+                            .frame(width: 41, height: 32)
+                            
+                            Spacer()
+                            
+                            Button {
+                                if swap {
+                                    kilograms += 0.1
+                                }
+                                else {
+                                    piece += 1
+                                }
+                            } label: {
+                                ZStack {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(width: 14)
+                                }
+                                .frame(width: 36, height: 36)
+                            }
+                        }
+                    }
+            }
+            .frame(width: 160, height: 36)
+        }
     }
 }
 
@@ -160,7 +253,6 @@ extension CellView {
 extension CellView {
     var actionLayer: some View {
         Button {
-            
         } label: {
             VStack {
                 VStack(spacing: 0) {
@@ -191,7 +283,6 @@ extension CellView {
 //extension CellView {
 //    var actionLayer: some View {
 //        VStack{
-//
 //        }
 //        .frame(width: 32, height: 64)
 //    }
@@ -216,30 +307,56 @@ extension CellView {
                 Button {
                     swap.toggle()
                 } label: {
-                    Rectangle()
-                        .frame(width: 77, height: 24)
-                        .foregroundColor(.white)
-                        .matchedGeometryEffect(id: "kilo" , in: buttonPosition)
-                        .cornerRadius(6)
-                        .overlay {
-                            Text("Шт")
-                        }
+                    HStack(spacing: 0) {
+                        Rectangle()
+                            .frame(width: 77, height: 24)
+                            .foregroundColor(.clear)
+                            .matchedGeometryEffect(id: "kilo" , in: buttonPosition)
+                            .cornerRadius(6)
+                            .overlay {
+                                Text("Шт")
+                                    .foregroundColor(.gray)
+                            }
+                        Rectangle()
+                            .frame(width: 77, height: 24)
+                            .foregroundColor(.white)
+                            .cornerRadius(6)
+                            .overlay {
+                                Text("Кг")
+                                    .foregroundColor(.black)
+                            }
+                    }
+                    .frame(width: 158, height: 28)
                 }
+                .frame(width: 158, height: 28, alignment: .leading)
             } else {
                 
                 //MARK: Left Button
                 Button {
                     swap.toggle()
                 } label: {
-                    Rectangle()
-                        .frame(width: 77, height: 24)
-                        .foregroundColor(.white)
-                        .matchedGeometryEffect(id: "piece", in: buttonPosition)
-                        .cornerRadius(6)
-                        .overlay {
-                            Text("Кг")
-                        }
+                    HStack(spacing: 0) {
+                        Rectangle()
+                            .frame(width: 77, height: 24)
+                            .foregroundColor(.white)
+                            .matchedGeometryEffect(id: "piece" , in: buttonPosition)
+                            .cornerRadius(6)
+                            .overlay {
+                                Text("Шт")
+                                    .foregroundColor(.black)
+                            }
+                        Rectangle()
+                            .frame(width: 77, height: 24)
+                            .foregroundColor(.clear)
+                            .cornerRadius(6)
+                            .overlay {
+                                Text("Кг")
+                                    .foregroundColor(.gray)
+                            }
+                    }
+                    .frame(width: 158, height: 28)
                 }
+                .frame(width: 158, height: 28, alignment: .trailing)
             }
         }
         .frame(width: 158, height: 28)

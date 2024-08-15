@@ -21,7 +21,7 @@ struct ContentView: View {
                             .frame(width: 168, height: 278)
                             .background(Color.white)
                             .cornerRadius(20)
-                            .shadow(radius: 3)
+                            .shadow(color: Color("CsColor") ,radius: 8)
                     }
                 }
                 .padding(50)
