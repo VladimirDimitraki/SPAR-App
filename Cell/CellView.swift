@@ -8,14 +8,8 @@
 import SwiftUI
 
 struct CellView: View {
-    var images: String
-    @State private var kilograms: Float = 0
-    @State private var piece: Int = 0
-    @State private var killoToggle = true
-    @State private var pieceToggle = false
-    @State private var basketButton = true
-    @Namespace var buttonPosition
-    
+    @ObservedObject var viewModel: ViewModelCell
+    var product: Product
     
     var body: some View {
         //MARK: Main cell
@@ -38,7 +32,13 @@ struct CellView: View {
 
 struct Cell_Previews: PreviewProvider {
     static var previews: some View {
-        CellView(images: "")
+        CellView(viewModel: ViewModelCell() ,product: Product(image: "Card-image11",
+                                  title: "Курица маринованная",
+                                  sale: nil,
+                                  amountIndicator: (amountName: "piece", minimumAmount: 0.1),
+                                  rating: 4.2,
+                                  oldPrice: 129.90,
+                                  currentPrice: 99.90))
     }
 }
 
@@ -66,7 +66,6 @@ extension CellView {
                     .frame(width: 42, height: 20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
             }
-            
         }
         .frame(width: 168, height: 168)
     }
@@ -92,8 +91,6 @@ extension CellView {
                 .fontWeight(.bold)
                 .kerning(-1)
                 .padding(.trailing, 2)
-                
-                //                .frame(width: geo.size.width * 1.5, height: geo.size.height, alignment: .leading)
             }
             
             //MARK: Old Price
@@ -120,14 +117,14 @@ extension CellView {
             }
             //MARK: Amount
             HStack {
-                if basketButton {
+                if viewModel.basketButton {
                     amountButton
                 }
             }
             .frame(width: 110, height: 18)
             //MARK: Price and Button layer
             HStack {
-                if basketButton {
+                if viewModel.basketButton {
                     animatedBasketButton
                 } else {
                     priceLayer
@@ -147,13 +144,13 @@ extension CellView {
     var buttonLayer: some View {
         HStack {
             Button {
-                basketButton.toggle()
+                viewModel.basketButton.toggle()
             } label: {
                 ZStack {
                     Rectangle()
-                        .frame(width: basketButton ? 160 : 48, height: 36)
-//                        .frame(width: 48, height: 36)
-//                        .frame(width: 158, height: 28)
+                        .frame(width: viewModel.basketButton ? 160 : 48, height: 36)
+                    //                        .frame(width: 48, height: 36)
+                    //                        .frame(width: 158, height: 28)
                         .cornerRadius(40)
                     ZStack {
                         Image("Bag")
@@ -167,7 +164,7 @@ extension CellView {
             }
             .foregroundColor(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
         }
-        .animation(.spring(), value: basketButton)
+        .animation(.spring(), value: viewModel.basketButton)
     }
 }
 
@@ -175,7 +172,7 @@ extension CellView {
 extension CellView {
     var animatedBasketButton: some View {
         Button {
-            basketButton.toggle()
+            viewModel.basketButton.toggle()
         } label: {
             HStack {
                 Rectangle()
@@ -184,63 +181,46 @@ extension CellView {
                     .overlay {
                         HStack {
                             Button {
-                                if killoToggle {
-                                    if kilograms < 0.1 {
-                                        basketButton.toggle()
-                                    }
-                                    kilograms -= (kilograms >= 0.1) ? 0.1 : 0
-                                }
-                                else {
-                                    if piece < 1 {
-                                        basketButton.toggle()
-                                    }
-                                    piece -= (piece > 0) ? 1 : 0
-                                }
-                            } label: {
-                                ZStack {
-                                    Image(systemName: "minus")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .frame(width: 14)
-                                }
-                                .frame(width: 36, height: 36)
+                                viewModel.decreaseAmount()
                             }
-                            
-                            Spacer()
-                            
-                            VStack {
-                                let amount: String = killoToggle ? "\(kilograms) кг" : "\(piece) шт"
-                                Text("\(amount)")
-                                    .font(.system(size: 14))
-                                    .fontWeight(.bold)
+                        } label: {
+                            ZStack {
+                                Image(systemName: "minus")
+                                    .resizable()
+                                    .scaledToFit()
                                     .foregroundColor(.white)
-                                Text("~9,99 ₽")
-                                    .font(.system(size: 11))
-                                    .foregroundColor(.white.opacity(0.8))
-                                
+                                    .frame(width: 14)
                             }
-                            .frame(width: 41, height: 32)
+                            .frame(width: 36, height: 36)
+                        }
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Text("\(viewModel.selectedAmount())")
+                                .font(.system(size: 14))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Text("~9,99 ₽")
+                                .font(.system(size: 11))
+                                .foregroundColor(.white.opacity(0.8))
                             
-                            Spacer()
-                            
-                            Button {
-                                if killoToggle {
-                                    kilograms += 0.1
-                                }
-                                else {
-                                    piece += 1
-                                }
-                            } label: {
-                                ZStack {
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .frame(width: 14)
-                                }
-                                .frame(width: 36, height: 36)
+                        }
+                        .frame(width: 41, height: 32)
+                        
+                        Spacer()
+                        
+                        Button {
+                            viewModel.increaseAmount()
+                        } label: {
+                            ZStack {
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.white)
+                                    .frame(width: 14)
                             }
+                            .frame(width: 36, height: 36)
                         }
                     }
             }
@@ -248,6 +228,7 @@ extension CellView {
         }
     }
 }
+
 
 //MARK: Action layer
 extension CellView {
@@ -279,18 +260,9 @@ extension CellView {
     }
 }
 
-//MARK: Temp layer
-//extension CellView {
-//    var actionLayer: some View {
-//        VStack{
-//        }
-//        .frame(width: 32, height: 64)
-//    }
-//}
-
 extension CellView {
     var image: some View {
-        Image(images)
+        Image("Image")
             .resizable()
             .scaledToFit()
             .aspectRatio(contentMode: .fit)
@@ -303,27 +275,25 @@ extension CellView {
     var amountButton: some View {
         HStack(spacing: 0) {
             Button {
-                pieceToggle = true
-                killoToggle = false
+                viewModel.togglePiece()
             } label: {
                 Text("Шт")
                     .foregroundColor(.black)
                     .frame(width: 77, height: 24)
             }
             .frame(width: 77, height: 24)
-            .background(pieceToggle ? Color.white : Color.clear)
+            .background(viewModel.pieceToggle ? Color.white : Color.clear)
             .cornerRadius(6)
             
             Button {
-                pieceToggle = false
-                killoToggle = true
+                viewModel.toggleKilo()
             } label: {
                 Text("Кг")
                     .foregroundColor(.black)
                     .frame(width: 77, height: 24)
             }
             .frame(width: 77, height: 24)
-            .background(killoToggle ? Color.white : Color.clear)
+            .background(viewModel.killoToggle ? Color.white : Color.clear)
             .cornerRadius(6)
         }
         .frame(width: 158, height: 28)

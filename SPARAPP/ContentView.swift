@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    let items = DataItemsInFirstView()
-    let images = DataImages()
+    @StateObject var viewModel: ViewModelCell
     
     var body: some View {
         VStack {
             ButtonSwitchView()
             ScrollView {
-                LazyVGrid(columns: items.gridItem, spacing: 5) {
-                    ForEach(images.arrayImages, id: \.self) {
-                        CellView(images: $0)
+                LazyVGrid(columns: viewModel.gridItems, spacing: 5) {
+                    ForEach(viewModel.mockProducts.products, id: \.self) { product in
+                        CellView(viewModel: viewModel, product: product)
                             .frame(width: 168, height: 278)
                             .background(Color.white)
                             .cornerRadius(20)
@@ -32,6 +31,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: ViewModelCell())
     }
 }

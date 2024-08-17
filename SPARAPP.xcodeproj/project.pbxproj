@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7815F33C2C69CB0700D21D77 /* ButtonSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7815F33B2C69CB0700D21D77 /* ButtonSwitchView.swift */; };
 		7844A4292C7056AF009E346A /* rreeerververe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844A4282C7056AF009E346A /* rreeerververe.swift */; };
+		7844A42C2C706B1B009E346A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844A42B2C706B1B009E346A /* ViewModel.swift */; };
 		78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925D892C650E90008AA756 /* SPARAPPApp.swift */; };
 		78925D8C2C650E90008AA756 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925D8B2C650E90008AA756 /* ContentView.swift */; };
 		78925D8E2C650E92008AA756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78925D8D2C650E92008AA756 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		7815F33B2C69CB0700D21D77 /* ButtonSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSwitchView.swift; sourceTree = "<group>"; };
 		7844A4282C7056AF009E346A /* rreeerververe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rreeerververe.swift; sourceTree = "<group>"; };
+		7844A42B2C706B1B009E346A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		78925D862C650E90008AA756 /* SPARAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPARAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78925D892C650E90008AA756 /* SPARAPPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPARAPPApp.swift; sourceTree = "<group>"; };
 		78925D8B2C650E90008AA756 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,11 +83,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7844A42A2C706B02009E346A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7844A42B2C706B1B009E346A /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		78925D7D2C650E90008AA756 = {
 			isa = PBXGroup;
 			children = (
-				789AD4012C6918B000FA8B1E /* ButtonSwitchView */,
 				78925DB82C651F42008AA756 /* Model */,
+				7844A42A2C706B02009E346A /* ViewModel */,
+				789AD4012C6918B000FA8B1E /* ButtonSwitchView */,
 				78925DB32C650F08008AA756 /* Cell */,
 				78925D882C650E90008AA756 /* SPARAPP */,
 				78925D992C650E92008AA756 /* SPARAPPTests */,
@@ -302,6 +313,7 @@
 				78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */,
 				78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */,
 				78925DB52C650F18008AA756 /* CellView.swift in Sources */,
+				7844A42C2C706B1B009E346A /* ViewModel.swift in Sources */,
 				78925DB72C651F3E008AA756 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
