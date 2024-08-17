@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7815F33C2C69CB0700D21D77 /* ButtonSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7815F33B2C69CB0700D21D77 /* ButtonSwitchView.swift */; };
+		7844A4292C7056AF009E346A /* rreeerververe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844A4282C7056AF009E346A /* rreeerververe.swift */; };
 		78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925D892C650E90008AA756 /* SPARAPPApp.swift */; };
 		78925D8C2C650E90008AA756 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925D8B2C650E90008AA756 /* ContentView.swift */; };
 		78925D8E2C650E92008AA756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78925D8D2C650E92008AA756 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		7815F33B2C69CB0700D21D77 /* ButtonSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSwitchView.swift; sourceTree = "<group>"; };
+		7844A4282C7056AF009E346A /* rreeerververe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rreeerververe.swift; sourceTree = "<group>"; };
 		78925D862C650E90008AA756 /* SPARAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPARAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78925D892C650E90008AA756 /* SPARAPPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPARAPPApp.swift; sourceTree = "<group>"; };
 		78925D8B2C650E90008AA756 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				78925D8B2C650E90008AA756 /* ContentView.swift */,
 				78925D8D2C650E92008AA756 /* Assets.xcassets */,
 				78925D8F2C650E92008AA756 /* Preview Content */,
+				7844A4282C7056AF009E346A /* rreeerververe.swift */,
 			);
 			path = SPARAPP;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7815F33C2C69CB0700D21D77 /* ButtonSwitchView.swift in Sources */,
+				7844A4292C7056AF009E346A /* rreeerververe.swift in Sources */,
 				78925D8C2C650E90008AA756 /* ContentView.swift in Sources */,
 				78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */,
 				78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */,

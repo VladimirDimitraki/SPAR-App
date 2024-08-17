@@ -11,8 +11,9 @@ struct CellView: View {
     var images: String
     @State private var kilograms: Float = 0
     @State private var piece: Int = 0
-    @State private var swap = true
-    @State private var basketButton = false
+    @State private var killoToggle = true
+    @State private var pieceToggle = false
+    @State private var basketButton = true
     @Namespace var buttonPosition
     
     
@@ -78,22 +79,21 @@ extension CellView {
             //MARK: Actual Price
             GeometryReader { geo in
                 HStack(alignment: .center, spacing: 0) {
-                    Group {
-                        //MARK: Big price
-                        Text("9")
-                            .font(.system(size: 20))
-                        //MARK: Cent price
-                        Text("99")
-                            .font(.system(size: 16))
-                    }
-                    .fontWeight(.bold)
-                    .kerning(-1)
-                    .padding(.trailing, 2)
+                    //MARK: Big price
+                    Text("99999")
+                        .font(.system(size: 20))
+                    //MARK: Cent price
+                    Text("99")
+                        .font(.system(size: 16))
+                    
                     //MARK: Icon per amount
                     Image("PerAmountIcon")
                 }
+                .fontWeight(.bold)
+                .kerning(-1)
+                .padding(.trailing, 2)
                 
-//                .frame(width: geo.size.width * 1.5, height: geo.size.height, alignment: .leading)
+                //                .frame(width: geo.size.width * 1.5, height: geo.size.height, alignment: .leading)
             }
             
             //MARK: Old Price
@@ -132,11 +132,9 @@ extension CellView {
                 } else {
                     priceLayer
                         .padding(9)
-                    Spacer()
                     buttonLayer
                         .padding(4)
                 }
-                
             }
             .frame(width: 168, height: 44)
         }
@@ -153,7 +151,9 @@ extension CellView {
             } label: {
                 ZStack {
                     Rectangle()
-                        .frame(width: 48, height: 36)
+                        .frame(width: basketButton ? 160 : 48, height: 36)
+//                        .frame(width: 48, height: 36)
+//                        .frame(width: 158, height: 28)
                         .cornerRadius(40)
                     ZStack {
                         Image("Bag")
@@ -167,6 +167,7 @@ extension CellView {
             }
             .foregroundColor(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
         }
+        .animation(.spring(), value: basketButton)
     }
 }
 
@@ -177,14 +178,13 @@ extension CellView {
             basketButton.toggle()
         } label: {
             HStack {
-                
                 Rectangle()
                     .fill(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
                     .cornerRadius(40)
                     .overlay {
                         HStack {
                             Button {
-                                if swap {
+                                if killoToggle {
                                     if kilograms < 0.1 {
                                         basketButton.toggle()
                                     }
@@ -210,7 +210,7 @@ extension CellView {
                             Spacer()
                             
                             VStack {
-                                let amount: String = swap ? "\(kilograms) кг" : "\(piece) шт"
+                                let amount: String = killoToggle ? "\(kilograms) кг" : "\(piece) шт"
                                 Text("\(amount)")
                                     .font(.system(size: 14))
                                     .fontWeight(.bold)
@@ -225,7 +225,7 @@ extension CellView {
                             Spacer()
                             
                             Button {
-                                if swap {
+                                if killoToggle {
                                     kilograms += 0.1
                                 }
                                 else {
@@ -302,65 +302,34 @@ extension CellView {
 extension CellView {
     var amountButton: some View {
         HStack(spacing: 0) {
-            if swap {
-                //MARK: Right Button
-                Button {
-                    swap.toggle()
-                } label: {
-                    HStack(spacing: 0) {
-                        Rectangle()
-                            .frame(width: 77, height: 24)
-                            .foregroundColor(.clear)
-                            .matchedGeometryEffect(id: "kilo" , in: buttonPosition)
-                            .cornerRadius(6)
-                            .overlay {
-                                Text("Шт")
-                                    .foregroundColor(.gray)
-                            }
-                        Rectangle()
-                            .frame(width: 77, height: 24)
-                            .foregroundColor(.white)
-                            .cornerRadius(6)
-                            .overlay {
-                                Text("Кг")
-                                    .foregroundColor(.black)
-                            }
-                    }
-                    .frame(width: 158, height: 28)
-                }
-                .frame(width: 158, height: 28, alignment: .leading)
-            } else {
-                
-                //MARK: Left Button
-                Button {
-                    swap.toggle()
-                } label: {
-                    HStack(spacing: 0) {
-                        Rectangle()
-                            .frame(width: 77, height: 24)
-                            .foregroundColor(.white)
-                            .matchedGeometryEffect(id: "piece" , in: buttonPosition)
-                            .cornerRadius(6)
-                            .overlay {
-                                Text("Шт")
-                                    .foregroundColor(.black)
-                            }
-                        Rectangle()
-                            .frame(width: 77, height: 24)
-                            .foregroundColor(.clear)
-                            .cornerRadius(6)
-                            .overlay {
-                                Text("Кг")
-                                    .foregroundColor(.gray)
-                            }
-                    }
-                    .frame(width: 158, height: 28)
-                }
-                .frame(width: 158, height: 28, alignment: .trailing)
+            Button {
+                pieceToggle = true
+                killoToggle = false
+            } label: {
+                Text("Шт")
+                    .foregroundColor(.black)
+                    .frame(width: 77, height: 24)
             }
+            .frame(width: 77, height: 24)
+            .background(pieceToggle ? Color.white : Color.clear)
+            .cornerRadius(6)
+            
+            Button {
+                pieceToggle = false
+                killoToggle = true
+            } label: {
+                Text("Кг")
+                    .foregroundColor(.black)
+                    .frame(width: 77, height: 24)
+            }
+            .frame(width: 77, height: 24)
+            .background(killoToggle ? Color.white : Color.clear)
+            .cornerRadius(6)
         }
         .frame(width: 158, height: 28)
         .background(.gray.opacity(0.2))
         .cornerRadius(6)
+        .animation(.spring())
     }
 }
+
