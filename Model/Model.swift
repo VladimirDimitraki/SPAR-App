@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MockProducts {
+struct Model {
     let products: [Product] = [
         Product(image: "Image",
                 title: "Курица маринованная",
@@ -16,15 +16,18 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: .kilo
+               ),
         Product(image: "Image0",
                 title: "Курица маринованная",
-                sale: nil,
+                sale: 25,
                 rating: 4.1,
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: .kilo),
         Product(image: "Card-image1",
                 title: "Курица маринованная",
                 sale: nil,
@@ -32,7 +35,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: .kilo),
         Product(image: "Card-image2",
                 title: "Курица маринованная",
                 sale: nil,
@@ -40,7 +44,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: .piece),
         Product(image: "Card-image3",
                 title: "Курица маринованная",
                 sale: nil,
@@ -48,15 +53,17 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image4",
                 title: "Курица маринованная",
-                sale: nil,
+                sale: 10,
                 rating: 4.1,
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image5",
                 title: "Курица маринованная",
                 sale: nil,
@@ -64,7 +71,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image6",
                 title: "Курица маринованная",
                 sale: nil,
@@ -72,7 +80,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image7",
                 title: "Курица маринованная",
                 sale: nil,
@@ -80,7 +89,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image8",
                 title: "Курица маринованная",
                 sale: nil,
@@ -88,7 +98,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+               metrics: nil),
         Product(image: "Card-image9",
                 title: "Курица маринованная",
                 sale: nil,
@@ -96,7 +107,8 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image10",
                 title: "Курица маринованная",
                 sale: nil,
@@ -104,15 +116,17 @@ struct MockProducts {
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1),
+                minimumAmount: 1,
+                metrics: nil),
         Product(image: "Card-image11",
                 title: "Курица маринованная",
-                sale: nil,
+                sale: 15,
                 rating: 3.2,
                 oldPrice: 4.2,
                 currentPrice: 129.90,
                 amountName: "Кг",
-                minimumAmount: 1)
+                minimumAmount: 1,
+                metrics: nil)
     ]
 }
 
@@ -125,4 +139,10 @@ struct Product: Hashable {
     let currentPrice: Float
     let amountName: String
     let minimumAmount: Float
+    let metrics: Metrics?
+}
+
+enum Metrics: String, CaseIterable, Hashable {
+    case kilo = "Кг"
+    case piece = "Шт"
 }

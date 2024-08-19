@@ -16,26 +16,34 @@ extension CellView {
                     .font(.system(size: 14))
                     .multilineTextAlignment(.center)
             }
-            //MARK: Amount
-            HStack {
-                if viewModel.basketButton {
-                    amountButton
-                }
+            
+            .frame(height: 18)
+            .padding(.horizontal, 4)
+            
+            buttonLayer
+                .padding(4)
+            
+            if viewModel.basketButton {
+                UnitsPicker(viewModel: )
+                    .padding(4)
             }
-            .frame(width: 110, height: 18)
-            //MARK: Price and Button layer
-            HStack {
-                if viewModel.basketButton {
-                    animatedBasketButton
-                } else {
-                    priceLayer
-                        .padding(9)
-                    buttonLayer
-                        .padding(4)
-                }
-            }
-            .frame(width: 168, height: 44)
+            
+            
         }
         .frame(width: 168, height: 110)
+        .animation(.default, value: viewModel.basketButton)
+    }
+}
+
+struct CellD_Previews: PreviewProvider {
+    static var previews: some View {
+        CellView(viewModel: ViewModelCell() ,product: Product(image: "Card-image11",
+                                                              title: "Курица маринованная",
+                                                              sale: nil,
+                                                              rating: 4.9,
+                                                              oldPrice: 4.2,
+                                                              currentPrice: 129.90,
+                                                              amountName: "Кш",
+                                                              minimumAmount: 1, metrics: .kilo))
     }
 }
