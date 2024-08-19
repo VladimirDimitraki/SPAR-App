@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7815F33C2C69CB0700D21D77 /* ButtonSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7815F33B2C69CB0700D21D77 /* ButtonSwitchView.swift */; };
-		7844A4292C7056AF009E346A /* rreeerververe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844A4282C7056AF009E346A /* rreeerververe.swift */; };
 		7844A42C2C706B1B009E346A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844A42B2C706B1B009E346A /* ViewModel.swift */; };
 		78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925D892C650E90008AA756 /* SPARAPPApp.swift */; };
 		78925D8C2C650E90008AA756 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925D8B2C650E90008AA756 /* ContentView.swift */; };
@@ -19,6 +18,10 @@
 		78925DA72C650E92008AA756 /* SPARAPPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925DA62C650E92008AA756 /* SPARAPPUITestsLaunchTests.swift */; };
 		78925DB52C650F18008AA756 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925DB42C650F18008AA756 /* CellView.swift */; };
 		78925DB72C651F3E008AA756 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78925DB62C651F3E008AA756 /* Data.swift */; };
+		78CB698D2C732287006DD05B /* CellView+ButtonBasket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB698C2C732287006DD05B /* CellView+ButtonBasket.swift */; };
+		78CB698F2C7322E4006DD05B /* CellView+Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB698E2C7322E4006DD05B /* CellView+Price.swift */; };
+		78CB69912C73232E006DD05B /* CellView+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB69902C73232E006DD05B /* CellView+Description.swift */; };
+		78CB69932C732383006DD05B /* CellView+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CB69922C732383006DD05B /* CellView+Image.swift */; };
 		78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F3DEE22C6A5BFF004AB285 /* CellRating.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		7815F33B2C69CB0700D21D77 /* ButtonSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSwitchView.swift; sourceTree = "<group>"; };
-		7844A4282C7056AF009E346A /* rreeerververe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rreeerververe.swift; sourceTree = "<group>"; };
 		7844A42B2C706B1B009E346A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		78925D862C650E90008AA756 /* SPARAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPARAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78925D892C650E90008AA756 /* SPARAPPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPARAPPApp.swift; sourceTree = "<group>"; };
@@ -55,6 +57,10 @@
 		78925DA62C650E92008AA756 /* SPARAPPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPARAPPUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		78925DB42C650F18008AA756 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		78925DB62C651F3E008AA756 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		78CB698C2C732287006DD05B /* CellView+ButtonBasket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellView+ButtonBasket.swift"; sourceTree = "<group>"; };
+		78CB698E2C7322E4006DD05B /* CellView+Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellView+Price.swift"; sourceTree = "<group>"; };
+		78CB69902C73232E006DD05B /* CellView+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellView+Description.swift"; sourceTree = "<group>"; };
+		78CB69922C732383006DD05B /* CellView+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellView+Image.swift"; sourceTree = "<group>"; };
 		78F3DEE22C6A5BFF004AB285 /* CellRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRating.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,7 +128,6 @@
 				78925D8B2C650E90008AA756 /* ContentView.swift */,
 				78925D8D2C650E92008AA756 /* Assets.xcassets */,
 				78925D8F2C650E92008AA756 /* Preview Content */,
-				7844A4282C7056AF009E346A /* rreeerververe.swift */,
 			);
 			path = SPARAPP;
 			sourceTree = "<group>";
@@ -157,6 +162,10 @@
 			children = (
 				78925DB42C650F18008AA756 /* CellView.swift */,
 				78F3DEE22C6A5BFF004AB285 /* CellRating.swift */,
+				78CB698C2C732287006DD05B /* CellView+ButtonBasket.swift */,
+				78CB698E2C7322E4006DD05B /* CellView+Price.swift */,
+				78CB69902C73232E006DD05B /* CellView+Description.swift */,
+				78CB69922C732383006DD05B /* CellView+Image.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -307,12 +316,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CB698F2C7322E4006DD05B /* CellView+Price.swift in Sources */,
 				7815F33C2C69CB0700D21D77 /* ButtonSwitchView.swift in Sources */,
-				7844A4292C7056AF009E346A /* rreeerververe.swift in Sources */,
 				78925D8C2C650E90008AA756 /* ContentView.swift in Sources */,
+				78CB698D2C732287006DD05B /* CellView+ButtonBasket.swift in Sources */,
 				78925D8A2C650E90008AA756 /* SPARAPPApp.swift in Sources */,
 				78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */,
+				78CB69932C732383006DD05B /* CellView+Image.swift in Sources */,
 				78925DB52C650F18008AA756 /* CellView.swift in Sources */,
+				78CB69912C73232E006DD05B /* CellView+Description.swift in Sources */,
 				7844A42C2C706B1B009E346A /* ViewModel.swift in Sources */,
 				78925DB72C651F3E008AA756 /* Data.swift in Sources */,
 			);

@@ -33,138 +33,13 @@ struct CellView: View {
 struct Cell_Previews: PreviewProvider {
     static var previews: some View {
         CellView(viewModel: ViewModelCell() ,product: Product(image: "Card-image11",
-                                  title: "Курица маринованная",
-                                  sale: nil,
-                                  amountIndicator: (amountName: "piece", minimumAmount: 0.1),
-                                  rating: 4.2,
-                                  oldPrice: 129.90,
-                                  currentPrice: 99.90))
-    }
-}
-
-//MARK: Image layer
-extension CellView {
-    var imageLayer: some View {
-        ZStack {
-            image
-                .frame(width: 155, height: 155)
-            HStack {
-                Image("Vector1")
-                    .font(.system(size: 12))
-                    .foregroundColor(Color.yellow)
-                Text("5.0")
-                    .font(.system(size: 12))
-            }
-            .frame(width: 41, height: 20)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-            
-            HStack {
-                Text("25%")
-                    .foregroundColor(Color(red: 195 / 255, green: 35 / 255, blue: 35 / 255))
-                    .fontWeight(.bold)
-                    .font(.system(size: 16, design: .rounded))
-                    .frame(width: 42, height: 20)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-            }
-        }
-        .frame(width: 168, height: 168)
-    }
-}
-
-//MARK: Price layer
-extension CellView {
-    var priceLayer: some View {
-        VStack {
-            //MARK: Actual Price
-            GeometryReader { geo in
-                HStack(alignment: .center, spacing: 0) {
-                    //MARK: Big price
-                    Text("99999")
-                        .font(.system(size: 20))
-                    //MARK: Cent price
-                    Text("99")
-                        .font(.system(size: 16))
-                    
-                    //MARK: Icon per amount
-                    Image("PerAmountIcon")
-                }
-                .fontWeight(.bold)
-                .kerning(-1)
-                .padding(.trailing, 2)
-            }
-            
-            //MARK: Old Price
-            HStack {
-                Text("199,0")
-                    .strikethrough()
-                    .foregroundColor(.gray)
-                    .font(.system(size: 12))
-            }
-            .frame(width: 67, alignment: .leading)
-        }
-        .frame(width: 71, height: 36, alignment: .topTrailing)
-    }
-}
-
-//MARK: Description layer
-extension CellView {
-    var descriptionLayer: some View {
-        VStack {
-            HStack {
-                Text("Rutrum tortor consectetur, bibendum")
-                    .font(.system(size: 14))
-                    .multilineTextAlignment(.center)
-            }
-            //MARK: Amount
-            HStack {
-                if viewModel.basketButton {
-                    amountButton
-                }
-            }
-            .frame(width: 110, height: 18)
-            //MARK: Price and Button layer
-            HStack {
-                if viewModel.basketButton {
-                    animatedBasketButton
-                } else {
-                    priceLayer
-                        .padding(9)
-                    buttonLayer
-                        .padding(4)
-                }
-            }
-            .frame(width: 168, height: 44)
-        }
-        .frame(width: 168, height: 110)
-    }
-}
-
-//MARK: Button layer
-extension CellView {
-    var buttonLayer: some View {
-        HStack {
-            Button {
-                viewModel.basketButton.toggle()
-            } label: {
-                ZStack {
-                    Rectangle()
-                        .frame(width: viewModel.basketButton ? 160 : 48, height: 36)
-                    //                        .frame(width: 48, height: 36)
-                    //                        .frame(width: 158, height: 28)
-                        .cornerRadius(40)
-                    ZStack {
-                        Image("Bag")
-                            .resizable()
-                            .scaledToFit()
-                            .padding(1)
-                    }
-                    .frame(width: 16, height: 16)
-                }
-                .frame(width: 48, height: 36)
-            }
-            .foregroundColor(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
-        }
-        .animation(.spring(), value: viewModel.basketButton)
+                                                              title: "Курица маринованная",
+                                                              sale: nil,
+                                                              rating: 4.9,
+                                                              oldPrice: 4.2,
+                                                              currentPrice: 129.90,
+                                                              amountName: "Кш",
+                                                              minimumAmount: 1))
     }
 }
 
@@ -182,49 +57,49 @@ extension CellView {
                         HStack {
                             Button {
                                 viewModel.decreaseAmount()
+                            } label: {
+                                ZStack {
+                                    Image(systemName: "minus")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(width: 14)
+                                }
+                                .frame(width: 36, height: 36)
                             }
-                        } label: {
-                            ZStack {
-                                Image(systemName: "minus")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.white)
-                                    .frame(width: 14)
-                            }
-                            .frame(width: 36, height: 36)
-                        }
-                        
-                        Spacer()
-                        
-                        VStack {
-                            Text("\(viewModel.selectedAmount())")
-                                .font(.system(size: 14))
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                            Text("~9,99 ₽")
-                                .font(.system(size: 11))
-                                .foregroundColor(.white.opacity(0.8))
                             
-                        }
-                        .frame(width: 41, height: 32)
-                        
-                        Spacer()
-                        
-                        Button {
-                            viewModel.increaseAmount()
-                        } label: {
-                            ZStack {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .scaledToFit()
+                            Spacer()
+                            
+                            VStack {
+                                Text("\(viewModel.selectedAmount())")
+                                    .font(.system(size: 14))
+                                    .fontWeight(.bold)
                                     .foregroundColor(.white)
-                                    .frame(width: 14)
+                                Text("~9,99 ₽")
+                                    .font(.system(size: 11))
+                                    .foregroundColor(.white.opacity(0.8))
+                                
                             }
-                            .frame(width: 36, height: 36)
+                            .frame(width: 41, height: 32)
+                            
+                            Spacer()
+                            
+                            Button {
+                                viewModel.increaseAmount()
+                            } label: {
+                                ZStack {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(width: 14)
+                                }
+                                .frame(width: 36, height: 36)
+                            }
                         }
                     }
+                    .frame(width: 160, height: 36)
             }
-            .frame(width: 160, height: 36)
         }
     }
 }

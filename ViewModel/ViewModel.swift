@@ -13,15 +13,12 @@ class ViewModelCell: ObservableObject {
     @Published var piece: Int = 0
     @Published var killoToggle = true
     @Published var pieceToggle = false
-    @Published var basketButton = true
+    @Published var basketButton = false
     @Published var gridItems: [GridItem]
     
-    init(killoToggle: Bool = true, pieceToggle: Bool = false, basketButton: Bool = true) {
+    init() {
         self.kilograms = 0.1
         self.piece = 1
-        self.killoToggle = killoToggle
-        self.pieceToggle = pieceToggle
-        self.basketButton = basketButton
         self.gridItems = [GridItem(.fixed(170), spacing: 5),
                           GridItem(.fixed(170), spacing: 5)]
     }

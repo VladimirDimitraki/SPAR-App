@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel: ViewModelCell
+    @StateObject var viewModel = ViewModelCell()
     
     var body: some View {
         VStack {
