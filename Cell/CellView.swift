@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CellView: View {
-    @ObservedObject var viewModel: ViewModelCell
+    @ObservedObject var viewModel: CellViewModel
     
     var body: some View {
         //MARK: Main cell
@@ -31,7 +31,14 @@ struct CellView: View {
 
 struct Cell_Previews: PreviewProvider {
     static var previews: some View {
-        CellView(viewModel: ViewModelCell())
+        CellView(viewModel: CellViewModel(product: Product(image: "Card-image11",
+                                                                    title: "Курица маринованная",
+                                                                    sale: nil,
+                                                                    rating: 4.9,
+                                                                    oldPrice: 4.2,
+                                                                    currentPrice: 129.90,
+                                                                    amountName: "Кш",
+                                                                    minimumAmount: 1, metrics: .kilo)))
     }
 }
 

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Model {
-    let products: [Product] = [
+   var products: [Product] =
+    [
         Product(image: "Image",
                 title: "Курица маринованная",
                 sale: nil,
@@ -139,7 +140,7 @@ struct Product: Hashable {
     let currentPrice: Float
     let amountName: String
     let minimumAmount: Float
-    let metrics: Metrics?
+    var metrics: Metrics?
 }
 
 enum Metrics: String, CaseIterable, Hashable {

@@ -11,7 +11,7 @@ struct UnitsPicker: View {
     @ObservedObject var viewModel: UnitsPickerViewModel
     
     var body: some View {
-        Picker("Picker", selection: $viewModel.product) {
+        Picker("Picker", selection: $viewModel.product.metrics) {
             ForEach(Metrics.allCases, id: \.self) { metr in
                 Text(metr.rawValue)
             }

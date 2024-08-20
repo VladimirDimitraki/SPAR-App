@@ -8,9 +8,10 @@
 import SwiftUI
 
 class UnitsPickerViewModel: ObservableObject {
-    @Published var product: Product
+   @Published var product: Product
     
     init(product: Product) {
         self.product = product
     }
 }
+

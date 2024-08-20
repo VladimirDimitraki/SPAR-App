@@ -18,7 +18,7 @@ struct ContentView: View {
                                     GridItem(.fixed(170))
                 ], spacing: 5) {
                     ForEach(viewModel.getProducts(), id: \.self) { product in
-                        CellView(viewModel: ViewModelCell())
+                        CellView(viewModel: CellViewModel(product: product))
                             .frame(width: 168, height: 278)
                             .background(Color.white)
                             .cornerRadius(20)

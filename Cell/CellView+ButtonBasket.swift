@@ -31,7 +31,7 @@ extension CellView {
                     .font(.system(size: 14))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                Text("~9,99 ₽")
+                Text("\(viewModel.product.oldPrice)")
                     .font(.system(size: 11))
                     .foregroundColor(.white.opacity(0.8))
                 
@@ -54,7 +54,7 @@ extension CellView {
             }
         }
     }
-        
+    
     private var basket: some View {
         Image("Bag")
             .resizable()
@@ -62,31 +62,32 @@ extension CellView {
             .frame(width: 16, height: 16)
     }
     
-    private var basketContainer: some View {
+    private var buttonBasket: some View {
         ZStack {
             Rectangle()
                 .frame(width: viewModel.basketButton ? 160 : 48, height: 36)
                 .cornerRadius(40)
                 .overlay {
-
-                        switch viewModel.basketButton {
-                        case true:
-                            amount
-                        case false:
-                            basket
-                        }
+                    switch viewModel.basketButton {
+                    case true:
+                        amount
+                    case false:
+                        basket
+                    }
                 }
                 .foregroundColor(Color(red: 21 / 255, green: 183 / 255, blue: 66 / 255))
         }
         .frame(width: viewModel.basketButton ? 160 : 48, height: 36)
     }
+    
     var buttonLayer: some View {
         Button {
             viewModel.basketButton = true
         } label: {
-            basketContainer
+            buttonBasket
         }
-        .frame(width: 168, height: 36, alignment: viewModel.basketButton ? .center : .trailing)
+        .frame(width: viewModel.basketButton ? 168 : 48, height: 36, alignment: viewModel.basketButton ? .center : .trailing)
         .animation(.spring(), value: viewModel.basketButton)
     }
 }
+

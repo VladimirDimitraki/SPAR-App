@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-class ViewModelCell: ObservableObject {
-    @Published var viewModel: ViewModel
+class CellViewModel: ObservableObject {
     @Published var product: Product
     @Published var kilograms: Float = 0
     @Published var piece: Int = 0
@@ -16,9 +15,10 @@ class ViewModelCell: ObservableObject {
     @Published var pieceToggle = false
     @Published var basketButton = false
     
-    init() {
+    init(product: Product) {
         self.kilograms = 0.1
         self.piece = 1
+        self.product = product
     }
     
     func decreaseAmount() {
@@ -58,9 +58,5 @@ class ViewModelCell: ObservableObject {
     func togglePiece() {
         pieceToggle = true
         killoToggle = false
-    }
-    
-    func getProduct() -> Product {
-        
     }
 }
