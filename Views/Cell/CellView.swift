@@ -18,6 +18,7 @@ struct CellView: View {
                 imageLayer
                 //MARK: Description layer
                 descriptionLayer
+                    .padding(.bottom, 4)
                 
             }
             .frame(width: 168, height: 278)
@@ -74,7 +75,7 @@ extension CellView {
 
 extension CellView {
     var image: some View {
-        Image("Image")
+        Image(viewModel.product.image)
             .resizable()
             .scaledToFit()
             .aspectRatio(contentMode: .fit)

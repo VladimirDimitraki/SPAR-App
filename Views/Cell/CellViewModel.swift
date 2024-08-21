@@ -23,7 +23,7 @@ class CellViewModel: ObservableObject {
     
     func decreaseAmount() {
         if killoToggle {
-            if kilograms < 0.1 {
+            if kilograms <= 0.1 {
                 basketButton.toggle()
             }
             kilograms -= (kilograms >= 0.1) ? 0.1 : 0

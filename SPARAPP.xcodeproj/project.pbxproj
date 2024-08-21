@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781206062C75CAA300C07860 /* SwitchViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781206052C75CAA300C07860 /* SwitchViewButton.swift */; };
 		783FA8F62C738E960084B6A8 /* UnitsPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FA8F52C738E960084B6A8 /* UnitsPickerViewModel.swift */; };
 		783FA8F82C738FC40084B6A8 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FA8F72C738FC40084B6A8 /* CellViewModel.swift */; };
 		783FA8FB2C7391D10084B6A8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FA8FA2C7391D10084B6A8 /* ViewModel.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		781206052C75CAA300C07860 /* SwitchViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewButton.swift; sourceTree = "<group>"; };
 		783FA8F52C738E960084B6A8 /* UnitsPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsPickerViewModel.swift; sourceTree = "<group>"; };
 		783FA8F72C738FC40084B6A8 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		783FA8FA2C7391D10084B6A8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +97,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		781206032C75CA6200C07860 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				781206042C75CA8500C07860 /* SwitchViewButton */,
+				78925DB32C650F08008AA756 /* Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		781206042C75CA8500C07860 /* SwitchViewButton */ = {
+			isa = PBXGroup;
+			children = (
+				781206052C75CAA300C07860 /* SwitchViewButton.swift */,
+			);
+			path = SwitchViewButton;
+			sourceTree = "<group>";
+		};
 		783FA8F42C738E680084B6A8 /* UnitsPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,9 +134,9 @@
 		78925D7D2C650E90008AA756 = {
 			isa = PBXGroup;
 			children = (
+				781206032C75CA6200C07860 /* Views */,
 				783FA8F92C7391AB0084B6A8 /* ViewModel */,
 				78925DB82C651F42008AA756 /* Model */,
-				78925DB32C650F08008AA756 /* Cell */,
 				78925D882C650E90008AA756 /* SPARAPP */,
 				78925D992C650E92008AA756 /* SPARAPPTests */,
 				78925DA32C650E92008AA756 /* SPARAPPUITests */,
@@ -333,6 +352,7 @@
 				78620DE02C73388000B343F8 /* CellView+AnimatedButton.swift in Sources */,
 				783FA8FB2C7391D10084B6A8 /* ViewModel.swift in Sources */,
 				78F3DEE32C6A5BFF004AB285 /* CellRating.swift in Sources */,
+				781206062C75CAA300C07860 /* SwitchViewButton.swift in Sources */,
 				78CB69932C732383006DD05B /* CellView+Image.swift in Sources */,
 				78620DE22C734E8800B343F8 /* UnitsPicker.swift in Sources */,
 				783FA8F82C738FC40084B6A8 /* CellViewModel.swift in Sources */,

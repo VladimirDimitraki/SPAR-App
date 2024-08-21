@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct UnitsPicker: View {
-    @ObservedObject var viewModel: UnitsPickerViewModel
+    @State var metric: Metrics = .kilo
     
     var body: some View {
-        Picker("Picker", selection: $viewModel.product.metrics) {
+        Picker("Picker", selection: $metric) {
             ForEach(Metrics.allCases, id: \.self) { metr in
                 Text(metr.rawValue)
             }
         }
         .pickerStyle(.segmented)
+    }
+}
+
+struct Preview_Picker: PreviewProvider {
+    static var previews: some View {
+        UnitsPicker()
     }
 }

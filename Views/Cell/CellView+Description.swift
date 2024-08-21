@@ -19,6 +19,13 @@ extension CellView {
             .frame(width: 152)
             
             Spacer()
+            if viewModel.basketButton {
+                HStack {
+                    UnitsPicker()
+                }
+                .frame(width: 160, height: 28)
+            }
+            
             HStack {
                 if !viewModel.basketButton {
                     priceLayer
@@ -27,11 +34,11 @@ extension CellView {
                 
                 Spacer()
                 buttonLayer
-                    .padding(4)
             }
+            .padding(4)
             .frame(width: 168, height: 44)
         }
-        .frame(width: 168, height: 110)
+        .frame(width: 168, height: viewModel.basketButton ? 130 : 110)
         .animation(.default, value: viewModel.basketButton)
     }
 }
@@ -48,3 +55,4 @@ struct CellD_Previews: PreviewProvider {
                                                            minimumAmount: 1, metrics: .kilo)))
     }
 }
+
