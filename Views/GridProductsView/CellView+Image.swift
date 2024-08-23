@@ -14,11 +14,7 @@ extension CellView {
             image
                 .frame(width: 155, height: 155)
             HStack {
-                Image("Vector1")
-                    .font(.system(size: 12))
-                    .foregroundColor(Color.yellow)
-                Text("5.0")
-                    .font(.system(size: 12))
+                RatingView(viewModel: RatingViewModel(product: viewModel.product))
             }
             .frame(width: 41, height: 20)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)

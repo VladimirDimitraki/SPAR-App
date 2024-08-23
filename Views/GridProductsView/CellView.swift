@@ -39,7 +39,8 @@ struct Cell_Previews: PreviewProvider {
                                                                     oldPrice: 4.2,
                                                                     currentPrice: 129.90,
                                                                     amountName: "Кш",
-                                                                    minimumAmount: 1, metrics: .kilo)))
+                                                                    minimumAmount: 1, metrics: .kilo,
+                                                           labelSale: nil)))
     }
 }
 

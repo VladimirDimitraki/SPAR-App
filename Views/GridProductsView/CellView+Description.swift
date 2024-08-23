@@ -19,27 +19,28 @@ extension CellView {
             .frame(width: 152)
             
             Spacer()
-            if viewModel.basketButton {
-                HStack {
-                    UnitsPicker()
-                }
-                .frame(width: 160, height: 28)
-            }
+            
+            if viewModel.basketButton {}
             
             HStack {
                 if !viewModel.basketButton {
-                    priceLayer
-                        .padding(4)
+                        PriceLayer(viewModel: PriceLayerViewModel(product: viewModel.product))
+                            .padding(4)
                 }
                 
-                Spacer()
-                buttonLayer
+            Spacer()
+                
+                ButtonBasketView(viewModel: ButtonBasketViewModel(product: viewModel.product))
+                    .frame(width: viewModel.basketButton ? 168 : 48, alignment: .trailing)
             }
             .padding(4)
             .frame(width: 168, height: 44)
+            
+            if viewModel.basketButton {
+                UnitsPicker()
+            }
         }
         .frame(width: 168, height: viewModel.basketButton ? 130 : 110)
-        .animation(.default, value: viewModel.basketButton)
     }
 }
 
@@ -52,7 +53,8 @@ struct CellD_Previews: PreviewProvider {
                                                            oldPrice: 4.2,
                                                            currentPrice: 129.90,
                                                            amountName: "Кш",
-                                                           minimumAmount: 1, metrics: .kilo)))
+                                                           minimumAmount: 1, metrics: .kilo,
+                                                           labelSale: nil)))
     }
 }
 
